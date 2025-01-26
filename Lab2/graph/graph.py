@@ -169,6 +169,30 @@ class Graph:
     def display(self):
         for vertex in self.__graph:
             print(f"{vertex}: {self.__graph[vertex]}")
+    
+    def get_vertices(self):
+        return list(self.__graph.keys())
+    
+    def get_edges(self):
+        edges = []
+        for vertex1, edge in self.__graph.items():
+            for vertex2, weight in edge.items():
+                if self.__directed:
+                    edges.append((vertex1, vertex2, weight))
+                else:
+                    if (vertex2, vertex1, weight) not in edges:
+                        edges.append((vertex2, vertex1, weight))
+        return edges
+    
+    def get_adjacent_vertices(self, vertex:str):
+        return list(self.__graph[vertex].keys())
+    
+    def get_edge_weight(self, vertex1:str, vertex2:str):
+        if vertex1 in self.__graph and vertex2 in self.__graph[vertex1]:
+            return self.__graph[vertex1][vertex2]
+        else:
+            print("One or more vertices not found in the graph.")
+            return None
 
     def __str__(self):
         return f"{self.type} Graph with {self.__vertices} vertices and {self.__edges} edges."
