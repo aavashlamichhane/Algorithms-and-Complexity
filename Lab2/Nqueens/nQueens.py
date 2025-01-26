@@ -128,4 +128,5 @@ class NQueensVisualizer:
 # Run the visualizer for N-Queens
 if __name__ == "__main__":
     N = 8  # Change this value for different board sizes
+    N= int(input("Enter the board size: "))
     NQueensVisualizer(N)
