@@ -63,24 +63,40 @@ def brute_force_tsp(distance_matrix):
     
     return shortest_route, shortest_distance
 
+import matplotlib.pyplot as plt
+
 def main():
-    # Number of cities (be careful with large numbers!)
-    num_cities = 10
+    # Array of different number of cities
+    num_cities_array = list(range(3, 13))
+    times = []
+
+    for num_cities in num_cities_array:
+        # Generate random distance matrix
+        distance_matrix = generate_random_distance_matrix(num_cities, seed=42)
+        
+        print(f"Distance Matrix for {num_cities} cities:")
+        for row in distance_matrix:
+            print(row)
+        
+        start_time = time.time()
+        best_route, best_distance = brute_force_tsp(distance_matrix)
+        end_time = time.time()
+        
+        computation_time = end_time - start_time
+        times.append(computation_time)
+        
+        print(f"\nBest Route for {num_cities} cities: {best_route}")
+        print(f"Total Distance: {best_distance}")
+        print(f"Computation Time: {computation_time:.4f} seconds")
+        print("-" * 50)
     
-    # Generate random distance matrix
-    distance_matrix = generate_random_distance_matrix(num_cities, seed=42)
-    
-    print(f"Distance Matrix for {num_cities} cities:")
-    for row in distance_matrix:
-        print(row)
-    
-    start_time = time.time()
-    best_route, best_distance = brute_force_tsp(distance_matrix)
-    end_time = time.time()
-    
-    print(f"\nBest Route: {best_route}")
-    print(f"Total Distance: {best_distance}")
-    print(f"Computation Time: {end_time - start_time:.4f} seconds")
+    # Plotting the graph
+    plt.plot(num_cities_array, times, marker='o')
+    plt.xlabel('Number of Cities')
+    plt.ylabel('Computation Time (seconds)')
+    plt.title('TSP Computation Time vs Number of Cities')
+    plt.grid(True)
+    plt.show()
 
 if __name__ == '__main__':
     main()

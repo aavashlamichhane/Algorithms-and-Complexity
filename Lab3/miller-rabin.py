@@ -27,6 +27,7 @@ def miller_rabin(n, k):
     return True
 
 # Example usage
-n = 561  # Carmichael number, should return False
+n = [17, 19, 27, 123, 451, 561, 1013, 1139]
 k = 5    # Number of iterations
-print(miller_rabin(n, k))
+for n in n:
+    print(f"Test for {n}: Result = ",miller_rabin(n, k))

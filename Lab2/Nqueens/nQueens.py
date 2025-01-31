@@ -1,12 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
+import time
 
 class NQueensVisualizer:
     def __init__(self, n):
         self.n = n
         self.solutions = []
         self.solve()
-        self.display_solutions()
+        # self.display_solutions()
 
     def solve(self):
         """Find all solutions to the N-Queens problem using backtracking."""
@@ -130,3 +131,23 @@ if __name__ == "__main__":
     N = 8  # Change this value for different board sizes
     N= int(input("Enter the board size: "))
     NQueensVisualizer(N)
+    import matplotlib.pyplot as plt
+
+    def measure_time(n):
+        start_time = time.time()
+        NQueensVisualizer(n)
+        end_time = time.time()
+        return end_time - start_time
+
+    def plot_time_complexity():
+        ns = list(range(4, 13))  # Varying inputs from 1 to 12
+        times = [measure_time(n) for n in ns]
+
+        plt.plot(ns, times, marker='o')
+        plt.xlabel('Board Size (N)')
+        plt.ylabel('Time (seconds)')
+        plt.title('Time Complexity of N-Queens Solution')
+        plt.grid(True)
+        plt.show()
+
+    plot_time_complexity()

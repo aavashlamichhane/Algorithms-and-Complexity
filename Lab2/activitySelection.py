@@ -1,3 +1,5 @@
+import random
+
 def activity_selection(start_times, finish_times):
     n = len(start_times)
     selected_activities = []
@@ -23,8 +25,14 @@ def activity_selection(start_times, finish_times):
 
     return selected_activities
 
-# Example usage
-start_times = [1, 3, 0, 5, 8, 5]
-finish_times = [2, 4, 6, 7, 9, 9]
+# Generate random start and finish times
+num_activities = 10
+start_times = [random.randint(0, 10) for _ in range(num_activities)]
+finish_times = [start + random.randint(1, 10) for start in start_times]
+
+print("Generated start times:", start_times)
+print("Generated finish times:", finish_times)
+
+# Run the activity selection algorithm
 selected_activities = activity_selection(start_times, finish_times)
 print("Selected activities:", selected_activities)

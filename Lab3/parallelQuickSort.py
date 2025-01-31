@@ -61,8 +61,10 @@ def main():
     
     # Generate large random list
     test_list = [random.randint(1, 10000) for _ in range(100_000_000)]
+    print("Generated list of 100,000,000 elements ranging from 1 to 10,000")
     
     # Parallel quicksort
+    print("Sorting the list using parallel quicksort...")
     start_time = time.time()
     sorted_list = parallel_quicksort(test_list)
     parallel_time = time.time() - start_time
@@ -72,6 +74,7 @@ def main():
     assert sorted_list == sorted(test_list), "Sorting failed!"
     
     # Compare with built-in sort
+    print("Sorting the list using built-in sort...")
     start_time = time.time()
     builtin_sorted = sorted(test_list)
     builtin_time = time.time() - start_time
@@ -86,6 +89,7 @@ def main():
         right = [x for x in arr if x > pivot]
         return quick_sort_sequential(left) + middle + quick_sort_sequential(right)
     
+    print("Sorting the list using sequential quicksort...")
     start_time = time.time()
     sequenial_sorted = quick_sort_sequential(test_list)
     sequential_time = time.time() - start_time

@@ -1,4 +1,4 @@
-from graph import Graph
+from graph.graph import Graph
 
 class Vertex:
     def __init__(self, vertex: str, key: float = float('inf'), root: str = None):
